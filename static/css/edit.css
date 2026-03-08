@@ -1,0 +1,95 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(252, 131, 131);
+    margin:0;
+}
+
+
+
+form{
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+
+label{
+    font-weight: bold;
+}
+
+input, select{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button{
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #218838;
+}
+
+a{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
+.header{
+    text-align:center;
+    margin-top:30px;
+}
+
+.form-container{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+}
+.button-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-top:25px;
+}
+
+/* Update box */
+.update-box{
+    background:#ffe082;  
+    padding:12px 30px;
+    border-radius:6px;
+}
+
+.update-box button{
+    background:none;
+    border:none;
+    color:black;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* Cancel box */
+.cancel-box{
+    background:#ffe082;  
+    padding:12px 30px;
+    border-radius:6px;
+}
+
+.cancel-box a{
+    color:black;
+    text-decoration:none;
+    font-size:16px;
+}

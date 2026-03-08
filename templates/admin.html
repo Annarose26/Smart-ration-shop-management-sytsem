@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Ration Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+          <h2>SmartAdmin</h2>
+        </div>
+
+       <ul class="menu">
+           <li onclick="showSection('dashboard')">Dashboard</li>
+
+            <li class="dropdown">
+               Manage ▾
+                <ul class="submenu">
+                    <li onclick="showSection('addMember')">Add New Member</li>
+                    <li onclick="showSection('stock')">Update Daily Stock</li>
+                    <li onclick="showSection('notice')">Update Notices</li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+               View ▾
+                <ul class="submenu">
+                    <li onclick="showSection('booking')">View Bookings</li>
+                    <li onclick="showSection('customers')">Customer Details</li>
+                    <li onclick="showSection('reports')">Customer Reports</li>
+                </ul>
+            </li>
+
+            
+       </ul>
+            <a href="{{ url_for('index') }}" class="logout-link">Logout</a>
+            
+    </div>
+
+    <div class="main">
+
+        <!-- ================= DASHBOARD ================= -->
+        <div id="dashboard" class="section">
+           <h2>Dashboard Overview</h2>
+
+            <div class="cards">
+                <div class="card">
+                   <h3>Total Customers</h3>
+                   <p>{{ total_customers }}</p>
+                </div>
+
+                <div class="card">
+                    <h3>Total Bookings</h3>
+                    <p>{{ total_bookings }}</p>
+               </div>
+
+               <div class="card">
+                   <h3>Total Reports</h3>
+                   <p>{{ total_reports }}</p>
+                </div>
+
+                <div class="card">
+                   <h3>Total Stock Items</h3>
+                    <p>{{ total_stock }}</p>
+                </div>
+            </div>
+        
+            <h3>Stock Distribution</h3>
+            <div style="width:500px; margin:auto;">
+              <canvas id="stockChart"></canvas>
+            </div>
+            <h3>Recent Activity</h3>
+
+            <div class="activity-box">
+                <ul class="activity-list">
+                  {% for a in activities %}
+                    <li>
+                      <span class="dot"></span>
+                      {{ a.message }} 
+                      <small>{{ a.created_at }}</small>
+                   </li>
+                  {% endfor %}
+                </ul>
+            </div>
+        </div>
+            <!-- ================= MEMBERS ================= -->
+            <div id="addMember" class="section" style="display:none;">
+                <h2>Add New Member</h2>
+
+                <form method="POST" action="/add_member">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="text" name="card_number" placeholder="Card Number" required>
+                    <select name="card_type" required>
+                        <option value="">Select Type</option>
+                        <option>APL</option>
+                        <option>BPL</option>
+                        <option>AAY</option>
+                        <option>OTHERS</option>
+                    </select>
+                    <select name="gender" required>
+                      <option value="">Select Gender</option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                    </select>
+                    <input type="text" name="members" placeholder="Family Members" required>
+                    <input type="text" name="mobile" placeholder="Mobile Number" required>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <button type="submit">Add Member</button>
+                </form>
+
+                <h3>Registered Members</h3>
+                <table border="1" width="100%">
+                    <tr>
+                        <th>Name</th>
+                        <th>Card No</th>
+                        <th>Type</th>
+                        <th>Family</th>
+                        <th>Phone</th>
+                    </tr>
+                    {% for m in members %}
+                    <tr>
+                        <td>{{ m.name }}</td>
+                        <td>{{ m.card_number }}</td>
+                        <td>{{ m.card_type }}</td>
+                        <td>{{ m.members }}</td>
+                        <td>{{ m.mobile }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <!-- ================= STOCK ================= -->
+            <div id="stock" class="section" style="display:none;">
+               <h2>Update Daily Stock</h2>
+                <form method="POST" action="{{ url_for('add_stock') }}">
+
+                  <input type="text" name="item_name" placeholder="Item Name" required>
+
+                   <select name="card_type" required>
+                       <option value="">Select Card Type</option>
+                       <option value="APL">APL</option>
+                       <option value="BPL">BPL</option>
+                       <option value="AAY">AAY</option>
+                   </select>
+
+                  <input type="number" name="fixed_qty" placeholder="Fixed Qty Per Card" required>
+
+                  <input type="number" name="price" placeholder="Price" required>
+
+                  <input type="number" name="available_qty" placeholder="Available Quantity" required>
+
+                  <button type="submit">Add Stock</button>
+
+                </form>
+                <hr>
+                <h3>All Stock Items</h3>
+
+                <table border="1" width="100%" cellpadding="8">
+                    <tr>
+                       <th>Item</th>
+                       <th>Card Type</th>
+                       <th>Fixed Qty</th>
+                       <th>Price</th>
+                       <th>Available Qty</th>
+                       <th>Status</th>
+                       <th>Action</th>
+                    </tr>
+
+                    {% for s in stock %}
+                    <tr>
+                       <td>{{ s.item_name }}</td>
+                       <td>{{ s.card_type }}</td>
+                       <td>{{ s.fixed_qty }}</td>
+                       <td>{{ s.price }}</td>
+                       <td>{{ s.available_qty }}</td>
+                       <td>
+                           {% if s.available_qty > 0 %}
+                           <span style="color:green;">Available</span>
+                           {% else %}
+                           <span style="color:red;">Out of Stock</span>
+                           {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('delete_stock', id=s.id, section='stock') }}"
+                               onclick="return confirm('Delete this stock item?')">Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <!-- ================= BOOKINGS ================= -->
+            <div id="booking" class="section" style="display:none;">
+               <h2>Bookings</h2>
+                <table border="1" cellpadding="8">
+                    <tr>
+                        <th>Card No</th>
+                        <th>Card Type</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                    {% for b in bookings %}
+                   <tr>
+                        <td>{{ b.card_number }}</td>
+                        <td>{{ b.card_type }}</td>
+                        <td>{{ b.booking_date }}</td>
+                        <td>{{ b.booking_time }}</td>
+                        <td>{{ b.status }}</td>
+                        <td>
+                          {% if b.status == 'Pending' %}
+                          <a href="{{ url_for('update_booking', id=b.id, action='approve') }}">Approve</a> |
+                          <a href="{{ url_for('update_booking', id=b.id, action='reject') }}">Reject</a>
+                          {% else %}
+                          {{ b.status }}
+                          {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <!-- ================= REPORTS ================= -->
+            <div id="reports" class="section" style="display:none;">
+             <h2>Customer Reports</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Card No</th>
+                        <th>Complaint</th>
+                        <th>Date & Time</th>
+                    </tr>
+                    {% for r in reports %}
+                    <tr>
+                        <td>{{ r.name }}</td>
+                        <td>{{ r.card_number }}</td>
+                        <td>{{ r.description }}</td>
+                        <td>{{ r.created_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <!-- ================= NOTICE ================= -->
+            <div id="notice" class="section" style="display:none;">
+               <h2>Notice Management</h2>
+
+              <!-- ADD NEW NOTICE -->
+               <h3>Add New Notice</h3>
+                <form method="POST" action="{{ url_for('add_notice') }}">
+                   <input type="text" name="title" placeholder="Notice Title" required>
+
+                   <select name="type" required>
+                       <option value="">Select Type</option>
+                       <option value="shop">Shop Notice</option>
+                       <option value="government">Government Notice</option>
+                   </select>
+
+                   <textarea name="message" placeholder="Enter Notice Message" required></textarea>
+
+                   <button type="submit">Add Notice</button>
+                </form>
+
+                <hr>
+
+                <!-- EXISTING NOTICES -->
+                <h3>All Notices</h3>
+
+                <table border="1" cellpadding="8">
+                    <tr>
+                       <th>ID</th>
+                       <th>Title</th>
+                       <th>Type</th>
+                       <th>Status</th>
+                       <th>Action</th>
+                    </tr>
+
+                    {% for n in all_notices %}
+                    <tr>
+                        <td>{{ n.id }}</td>
+                        <td>{{ n.title }}</td>
+                        <td>{{ n.type }}</td>
+                        <td>{{ n.status }}</td>
+                        <td>
+                           {% if n.status == 'active' %}
+                           <a href="{{ url_for('deactivate_notice', id=n.id) }}">Deactivate</a>
+                           {% else %}
+                           <a href="{{ url_for('activate_notice', id=n.id) }}">Activate</a>
+                           {% endif %}
+                           /
+                           <a href="{{ url_for('delete_notice', id=n.id) }}"
+                           onclick="return confirm('Are you sure?')">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+               </table>
+            </div>
+            <!-- ================= CUSTOMERS ================= -->
+            <div id="customers" class="section" style="display:none;">
+              <h2>Customer Details</h2>
+
+                <table border="1" cellpadding="8" width="100%">
+                    <tr>
+                       <th>Profile</th>
+                       <th>Name</th>
+                       <th>Card Number</th>
+                       <th>Card Type</th>
+                       <th>Family Members</th>
+                       <th>Mobile</th>
+                       <th>Action</th>
+                    </tr>
+
+                    {% for m in members %}
+                    <tr>
+                        <td>
+                           <img src="{{ url_for('static', filename=m.profile_image) }}" 
+                            width="50" height="50" style="border-radius:50%;">
+                        </td>
+                        <td>{{ m.name }}</td>
+                        <td>{{ m.card_number }}</td>
+                        <td>{{ m.card_type }}</td>
+                        <td>{{ m.members }}</td>
+                        <td>{{ m.mobile }}</td>
+                        <td>
+                          <a href="{{ url_for('edit_member', id=m.id, section='customers') }}">Edit</a> /
+                          <a href="{{ url_for('delete_member', id=m.id) }}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <form method="GET" action="{{ url_for('admin') }}">
+                    <select name="card_type">
+                       <option value="ALL">ALL</option>
+                       <option value="APL">APL</option>
+                       <option value="BPL">BPL</option>
+                       <option value="AAY">AAY</option>
+                       <option value="OTHERS">OTHERS</option>
+                    </select>
+
+                    <!-- This keeps customers section open after search -->
+                    <input type="hidden" name="section" value="customers">
+
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            
+        <script>
+           function showSection(id){
+           document.querySelectorAll('.section').forEach(sec=>{
+           sec.style.display="none";
+           });
+          document.getElementById(id).style.display="block";
+         }
+
+         // Automatically open section if provided in URL
+          window.onload = function(){
+          const params = new URLSearchParams(window.location.search);
+          const section = params.get("section");
+          if(section){
+            showSection(section);
+          }
+          }
+        </script>
+
+        <script>
+           const ctx = document.getElementById('stockChart');
+
+           const chartLabels = {{ chart_labels | tojson }};
+           const chartValues = {{ chart_values | tojson }};
+
+           new Chart(ctx, {
+               type: 'pie',
+               data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Stock Distribution',
+                        data: chartValues,
+                        backgroundColor: [
+                            '#4CAF50',
+                            '#2196F3',
+                            '#FF9800',
+                            '#E91E63'
+                        ]
+                    }]
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

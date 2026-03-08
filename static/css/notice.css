@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ffd600, #c62828);
+}
+
+/* Header */
+.notice-header {
+    background: #f46a58;
+    padding: 20px;
+    text-align: center;
+    position: relative;   /* ADD THIS */
+}
+
+.notice-header h1 {
+    margin: 0;
+    color: black;
+}
+
+/* Container */
+.notice-container {
+    width: 85%;
+    margin: 30px auto;
+}
+
+/* Section Titles */
+.section-title {
+    margin-top: 40px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid black;
+}
+
+.shop-title {
+    color: #000;
+}
+
+.govt-title {
+    color: #000;
+}
+
+/* Notice Card */
+.notice-card {
+    background: white;
+    padding: 18px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.notice-card h3 {
+    margin: 0 0 8px 0;
+}
+
+.notice-card p {
+    margin: 0 0 8px 0;
+}
+
+.date {
+    font-size: 13px;
+    color: gray;
+}
+
+/* Different borders */
+.shop-card {
+    border-left: 6px solid #000;
+}
+
+.govt-card {
+    border-left: 6px solid #c62828;
+}
+/* HOME BUTTON */
+.home-btn {
+    position: absolute;   /* IMPORTANT */
+    right: 20px;
+    top: 20px;
+
+    background-color: #ffd84d;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 2px solid red;
+    color: black;
+}
+
+.home-btn:hover {
+    background-color: #ffcc00;
+}

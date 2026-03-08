@@ -1,0 +1,137 @@
+
+/* ===== BODY ===== */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:linear-gradient(to right, #ffd600, #c62828);
+    margin:0;
+}
+
+/* ===== HEADER ===== */
+header{
+    background:#f46a58;
+    color:black;
+    text-align:center;
+    padding:18px;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.about-container{
+    max-width:1000px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.about-container h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:black;
+}
+
+/* ===== PARAGRAPH ===== */
+.about-container p{
+    text-align:center;
+    margin-bottom:25px;
+    line-height:1.6;
+}
+
+/* ===== GRID ===== */
+.info-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+}
+
+/* ===== CARD ===== */
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:black;
+}
+
+/* ===== BUTTON ===== */
+.btn-area{
+    text-align:center;
+    margin-top:30px;
+}
+
+button{
+    background:#ffd84d;
+    color:black;
+    padding:10px 18px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+button:hover{
+    background: #ffcc00;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    margin-top:40px;
+    background:#263238;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+.home-btn{
+    position:absolute;
+    right:20px;
+    top:20px;
+    background:#ffd84d;
+    color:black;
+    padding:8px 15px;
+    text-decoration:none;
+    border-radius:5px;
+    border:2px solid red;
+}
+
+.topbar{
+    position:relative;
+    background: #f26552;
+    color:black;
+    white-space: inherit;
+    text-align:center;
+    padding:20px;
+}
+
+.features-list{
+    max-width:600px;
+    margin:auto;
+    line-height:1.8;
+}
+.section{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+margin:50px 0;
+flex-wrap:wrap;
+}
+
+.section-text{
+flex:1;
+}
+
+.section-image{
+flex:1;
+text-align:center;
+}
+
+.section-image img{
+width:300px;
+border-radius:10px;
+}

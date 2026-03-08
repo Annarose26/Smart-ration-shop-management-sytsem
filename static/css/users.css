@@ -1,0 +1,174 @@
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background: linear-gradient(to right, #ffd600, #c62828);
+    color:black;
+}
+
+/* ================= HEADER ================= */
+.top-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background:black;
+    color:white;
+}
+
+.profile-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.profile-img{
+    width:85px;
+    height:85px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
+}
+
+.header-right button{
+    margin-left:10px;
+    padding:8px 15px;
+    background:white;
+    color:black;
+    border:none;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= FAMILY SECTION ================= */
+.family-box{
+    background:#fff3cd;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+.family-box h3{
+    text-align:center;
+}
+
+/* ================= MONTHLY QUOTA ================= */
+.quota-box{
+    background:#fff3cd;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+/* ================= SELECTED ITEMS (WHITE) ================= */
+.selected-box{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+/* ================= TABLE ================= */
+.quota-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-bottom:20px;
+}
+
+.quota-table th,
+.quota-table td{
+    border:1px solid #ccc;
+    padding:8px;
+    text-align:center;
+}
+
+.quota-table th{
+    background:#f54747;
+    color:black;
+}
+
+.item-img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+}
+
+/* ================= STATUS COLORS ================= */
+.available{
+    color:green;
+    font-weight:bold;
+}
+
+.stockout{
+    color:red;
+    font-weight:bold;
+}
+
+/* ================= BUTTONS ================= */
+button{
+    padding:6px 12px;
+    margin:2px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    background:black;
+    color:white;
+    font-weight:bold;
+}
+
+button:hover{
+    opacity:0.8;
+}
+
+/* ================= POPUP ================= */
+.popup{
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    top:0;
+    left:0;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#fff3cd;
+    padding:20px;
+    width:300px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.popup-content input{
+    width:90%;
+    padding:8px;
+    margin:5px 0;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    margin-top:40px;
+    background:rgb(244, 106, 88);
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+.home-btn {
+    position: absolute;   /* IMPORTANT */
+    right: 20px;
+    top: 20px;
+
+    background-color: #ffd84d;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 2px solid red;
+    color: black;
+}
+
+.home-btn:hover {
+    background-color: #ffcc00;
+}

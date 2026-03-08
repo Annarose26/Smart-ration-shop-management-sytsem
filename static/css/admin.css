@@ -1,0 +1,158 @@
+body{
+    margin:0;
+    font-family:Arial;
+    display:flex;
+    background:rgb(252, 131, 131);
+}
+
+.sidebar{
+    width:220px;
+    background:#f8da64;
+    height:100vh;
+    padding:20px;
+    position:fixed;
+}
+
+.menu{
+    list-style:none;
+    padding:0;
+}
+
+.menu li{
+    padding:12px;
+    cursor:pointer;
+    border-radius:6px;
+}
+
+.menu li:hover{
+    background:white;
+}
+
+.submenu{
+    list-style:none;
+    padding-left:15px;
+    display:none;
+}
+
+.dropdown:hover .submenu{
+    display:block;
+}
+
+.main{
+    margin-left:240px;
+    padding:20px;
+    width:100%;
+}
+
+.cards{
+    display:flex;
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    flex:1;
+    border-radius:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table, th, td{
+    border:1px solid rgb(0, 0, 0);
+    background:white;
+}
+
+th, td{
+    padding:10px;
+    text-align:center;
+}
+
+form input, form select, form textarea{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+
+button{
+    padding:10px;
+    background:#f8da64;
+    border:none;
+    cursor:pointer;
+}
+.section {
+    padding: 20px;
+}
+
+canvas {
+    max-width: 500px !important;
+    max-height: 400px !important;
+}
+.logout-link{
+text-decoration:none;
+    padding:10px 20px;
+
+    background:#ffe082;      /* yellow */
+    color:black;
+
+    border:2px solid red;    /* red border */
+    border-radius:6px;       /* rectangle, not pill */
+
+    font-weight:600;
+    transition:0.3s;
+}
+.logout-link:hover{
+    background:red;
+    color:white;
+    transform:translateY(-2px);
+}
+.edit-box{
+background:#f4f4f4;
+padding:15px;
+margin-bottom:20px;
+border-radius:6px;
+}
+
+.edit-box input{
+display:block;
+margin:8px 0;
+padding:8px;
+width:250px;
+}
+.activity-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.activity-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.activity-list li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: #4CAF50;
+    border-radius: 3px; /* square */
+    margin-right: 10px;
+}
+
+.activity-list small {
+    margin-left: 10px;
+    color: gray;
+    font-size: 12px;
+}

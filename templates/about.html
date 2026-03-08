@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About | Smart Ration System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+    <h1>About Smart Ration System</h1>
+    <a href="{{ url_for('home') }}" class="home-btn">Home</a>
+</header>
+
+<div class="about-container">
+
+    <!-- ABOUT SECTION -->
+    <div class="section">
+
+        <div class="section-text">
+            <h2>Smart Ration System</h2>
+            <p>
+                Smart Ration System is a digital platform developed to modernize the
+                traditional Public Distribution System (PDS). It allows citizens to
+                check stock availability, submit complaints, view government notices,
+                and access ration services online in a transparent and efficient way.
+                This system reduces manual work and improves the management of ration
+                distribution through a centralized database.
+            </p>
+        </div>
+
+        <div class="section-image">
+            <img src="{{ url_for('static', filename='images/ration1.jpg') }}" alt="Ration Shop">
+        </div>
+
+    </div>
+
+
+    <!-- GOAL SECTION -->
+    <div class="section">
+
+        <div class="section-image">
+            <img src="{{ url_for('static', filename='images/goal.jpg') }}" alt="Goal">
+        </div>
+
+        <div class="section-text">
+            <h2>🎯 Our Goal</h2>
+            <p>
+                The goal of the Smart Ration System is to improve transparency and
+                efficiency in the ration distribution process. It aims to reduce
+                corruption, prevent stock mismanagement, and minimize long queues
+                at ration shops. By providing online access to information, the
+                system ensures fair distribution of essential commodities to all
+                eligible card holders.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- SERVICES -->
+    <h2>Services Provided</h2>
+
+    <div class="info-grid">
+
+        <div class="card">
+            <h3>📦 Stock Availability</h3>
+            <p>Customers can check available ration items and quantities in real time before visiting the shop.</p>
+        </div>
+
+        <div class="card">
+            <h3>📢 Government Notices</h3>
+            <p>Displays latest announcements, price changes, and government schemes related to ration distribution.</p>
+        </div>
+
+        <div class="card">
+            <h3>📝 Complaint System</h3>
+            <p>Customers can report issues such as stock shortage, poor quality items, or technical problems.</p>
+        </div>
+
+        <div class="card">
+            <h3>👤 Card Holder Management</h3>
+            <p>The admin can manage ration card holder information including card type, members, and mobile details.</p>
+        </div>
+
+
+    </div>
+
+
+    <!-- WHY SMART RATION -->
+    <div class="section">
+
+        <div class="section-text">
+            <h2>Why Smart Ration is Different?</h2>
+            <p>
+                Traditional ration shops often face problems such as long queues,
+                lack of transparency, and uncertainty about stock availability.
+                The Smart Ration System solves these issues by providing digital
+                records and online information access. Customers can check stock
+                availability before visiting the shop and receive updates instantly,
+                which improves efficiency and customer satisfaction.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- FEATURES -->
+    <div class="section">
+
+        <div class="section-text">
+            <h2>⭐ Key Features</h2>
+
+            <ul class="features-list">
+                <li>✔ Real-time stock monitoring</li>
+                <li>✔ Digital complaint submission</li>
+                <li>✔ Automatic date and time recording</li>
+                <li>✔ Shop and government notices displayed separately</li>
+                <li>✔ Admin dashboard for managing users and stock</li>
+                <li>✔ Secure database storage using MySQL</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    <h3>Contact Us</h3>
+    <p>📍 Address: Government Ration Store, Your City</p>
+    <p>📞 Phone: +91 9876543210</p>
+    <p>✉ Email: rationshop@example.com</p> 
+</footer>
+
+</body>
+</html>

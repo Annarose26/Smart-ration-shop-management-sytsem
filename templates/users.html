@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Ration Shop</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/users.css') }}">
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="top-header">
+
+        <div class="profile-header">
+            <img src="{{ url_for('static', filename=user.profile_image) }}" 
+                 class="profile-img" 
+                 alt="Profile" width="80">
+
+            <div>
+                <h3>{{ user.name }}</h3>
+                <p>{{ user.card_type }} Card Holder</p>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <a href="{{ url_for('home') }}" class="home-btn">Home</a>
+        </div>
+
+    </header>
+
+
+    <!-- ===== FAMILY DETAILS ===== -->
+    <section class="family-box">
+        <h3>Family Details</h3>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Card Number:</strong> {{ user.card_number }}</p>
+        <p><strong>Card Type:</strong> {{ user.card_type }}</p>
+        <p><strong>Members:</strong> {{ user.members }}</p>
+        <p><strong>Mobile:</strong> {{ user.mobile }}</p>
+    </section>
+
+
+    <!-- ===== MONTHLY QUOTA ===== -->
+    <section class="quota-box">
+
+        <h3>Monthly Quota ({{ user.card_type }})</h3>
+
+        <table class="quota-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Item Name</th>
+                    <th>Fixed Qty</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for item in items %}
+                <tr>
+                   <td>
+                       <img src="{{ url_for('static', filename=item.image) }}" 
+                        class="item-img"
+                        alt="{{ item.item_name }}" width="60">
+                   </td>
+                        <td>{{ item.item_name }}</td>
+                        <td>{{ item.fixed_qty }} Kg</td>
+                        <td>₹{{ item.price }}/Kg</td>
+
+                        {% if item.available_qty > 0 %}
+                        <td class="available">Available</td>
+                   <td>
+                       <button onclick="selectItem(
+                        '{{ item.item_name }}',
+                        {{ item.fixed_qty }},
+                        {{ item.price }},
+                        '{{ url_for("static", filename=item.image) }}')">Select</button>
+                       <button>Remove</button>
+                   </td>
+                        {% else %}
+                       <td class="stockout">Stock Out</td>
+                   <td>
+                       <button disabled>Select</button>
+                       <button disabled>Remove</button>
+                   </td>
+                        {% endif %}
+               </tr>
+                      {% endfor %}
+            </tbody>
+        </table>
+
+    </section>
+
+
+    <!-- ===== SELECTED ITEMS ===== -->
+    <section class="selected-box">
+
+    <h3>Selected Items</h3>
+        <table class="quota-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="cartBody">
+                <!-- Items will be added by JavaScript -->
+            </tbody>
+        </table>
+
+        <h4>Total Amount: ₹<span id="total">0</span></h4>
+        <button onclick="openPopup()">Book</button>
+    </section>
+
+
+    
+    <!-- ===== BOOKING POPUP ===== -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+           <h3>Booking Details</h3>
+
+            <form method="POST" action="{{ url_for('save_booking') }}">
+
+               <!-- hidden card holder id -->
+               <input type="hidden" name="card_holder_id" value="{{ user.id }}">
+
+               <label>Card Number</label>
+               <input type="text" name="card_number" value="{{ user.card_number }}" readonly><br>
+
+               <label>Card Type</label>
+                <select name="card_type" required>
+                   <option value="APL" {% if user.card_type == 'APL' %}selected{% endif %}>APL</option>
+                   <option value="BPL" {% if user.card_type == 'BPL' %}selected{% endif %}>BPL</option>
+                   <option value="AAY" {% if user.card_type == 'AAY' %}selected{% endif %}>AAY</option>
+                </select><br>
+
+               <label>Date</label>
+               <input type="date" name="booking_date" required><br>
+
+               <label>Time</label>
+               <input type="time" name="booking_time" required><br>
+
+               <button type="submit">Submit</button>
+               <button type="button" onclick="closePopup()">Cancel</button>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- JS -->
+     <script>
+     function closePopup() {
+     document.getElementById("popup").style.display = "none";
+     }
+    </script>
+    <script src="{{ url_for('static', filename='js/users.js') }}"></script>
+
+</body>
+</html>

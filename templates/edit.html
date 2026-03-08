@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Member</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
+</head>
+<body>
+
+    
+<div class="header">
+   <h1>Edit Customer</h1>
+</div>
+
+
+<div class="form-container">
+    <form method="POST">
+
+      <label>Name</label><br>
+      <input type="text" name="name" value="{{ edit_member.name }}" required><br><br>
+
+      <label>Card Number</label><br>
+      <input type="text" name="card_number" value="{{ edit_member.card_number }}" required><br><br>
+
+      <label>Card Type</label><br>
+        <select name="card_type">
+           <option value="APL" {% if edit_member.card_type == 'APL' %}selected{% endif %}>APL</option>
+           <option value="BPL" {% if edit_member.card_type == 'BPL' %}selected{% endif %}>BPL</option>
+           <option value="AAY" {% if edit_member.card_type == 'AAY' %}selected{% endif %}>AAY</option>
+        </select><br><br>
+
+      <label>Family Members</label><br>
+      <input type="number" name="members" value="{{ edit_member.members }}" required><br><br>
+
+      <label>Mobile</label><br>
+      <input type="text" name="mobile" value="{{ edit_member.mobile }}" required><br><br>
+
+      <label>Username</label><br>
+      <input type="text" name="username" value="{{ edit_member.username }}" required><br><br>
+
+        <div class="button-container">
+
+            <div class="update-box">
+              <button type="submit">Update</button>
+            </div>
+
+            <div class="cancel-box">
+              <a href="{{ url_for('admin', section='customers') }}">Cancel</a>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

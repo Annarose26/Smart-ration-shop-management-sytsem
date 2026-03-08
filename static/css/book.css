@@ -1,0 +1,98 @@
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+/* ===== DARK BACKGROUND ===== */
+.overlay{
+    height:100vh;
+    width:100%;
+    background:linear-gradient(135deg,#ffeb3b,#ffc107,#ff7043);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+/* ===== POPUP BOX ===== */
+.popup{
+    background:white;
+    width:360px;
+    padding:35px;
+    border-radius:12px;
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    animation:pop 0.3s ease;
+}
+
+/* animation */
+@keyframes pop{
+    from{
+        transform:scale(0.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.popup h2{
+    color:red;
+    margin-bottom:8px;
+}
+
+.popup p{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+
+/* inputs */
+.popup input,
+.popup select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:14px;
+}
+
+
+/* buttons */
+.buttons{
+    margin-top:15px;
+    display:flex;
+    gap:10px;
+}
+
+.submit-btn{
+    flex:1;
+    padding:10px;
+    background:red;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#c62828;
+}
+
+.cancel-btn{
+    flex:1;
+    padding:10px;
+    background:#ffe082;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Ration | Smart Ration</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/book.css') }}">
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="popup">
+
+        <h2>Book Your Ration</h2>
+
+        <!-- FORM START -->
+        <form action="/check_card" method="POST">
+
+            <input type="text"
+                   name="card_number"
+                   placeholder="Ration Card Number"
+                   required>
+
+           <select name="card_type" required>
+                <option value="">Select Card Type</option>
+                <option value="APL">APL</option>
+                <option value="BPL">BPL</option>
+                <option value="AAY">AAY</option>
+                <option value="OTHER">OTHER</option>
+           </select>
+
+            <div class="buttons">
+
+                <!-- SUBMIT TO FLASK -->
+                <button type="submit" class="submit-btn">
+                    Continue
+                </button>
+
+                <!-- CANCEL BUTTON -->
+                <button type="button"
+                        class="cancel-btn"
+                        onclick="goHome()">
+                    Cancel
+                </button>
+
+            </div>
+
+        </form>
+        <!-- FORM END -->
+
+    </div>
+
+</div>
+
+<script>
+function goHome()
+{
+    window.location.href = "/home";
+}
+</script>
+
+</body>
+</html>

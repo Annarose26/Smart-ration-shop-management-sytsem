@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fcf22d, #ef4839);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    background: #d0ded3;
+    color: rgb(29, 29, 27);
+    padding: 20px;
+    text-align: center;
+}
+
+.product-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.product {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 180px;
+    text-align: center;
+    box-shadow: 0 0 5px gray;
+}
+
+.product-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    background: #ddd57c;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+button:hover {
+    background: #eade56;
+}
+
+
+
+footer {
+    background: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+footer {
+    background: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 30px;
+}
+
+.footer-container h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.footer-container p {
+    margin: 3px 0;
+    font-size: 14px;
+}
+.login-box {
+    width: 300px;
+    margin: 100px auto;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgb(9, 2, 2);
+    border-radius: 10px;
+}
+
+.login-box input {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+.login-box button {
+    width: 50%;
+    padding: 8px;
+    background: rgb(240, 82, 82);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background: green;
+}
+.login-title{
+    text-align:center;
+    font-size:30px;     /* size of heading */
+    font-weight:bold;
+    margin-bottom:25px;
+    color:#060606;      /* green theme */
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    background: rgb(5, 5, 5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background: #070707;
+}

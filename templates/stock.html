@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Availability | Smart Ration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stock.css') }}">
+</head>
+
+<body>
+
+       <!-- ===== HEADER ===== -->
+    <div class="top-header">
+       <h1>SMART RATION</h1>
+     <h2 class="stock-title">STOCK AVAILABILITY</h2>
+       <a href="{{ url_for('home') }}" class="home-btn">Home</a>
+    </div>
+       <!-- ===== ITEMS HEADER BAR ===== -->
+    <div class="items-bar">
+        <h2>All Ration Items</h2>
+        <h3>Check Items By Card Type</h3>
+
+        <form method="GET" action="{{ url_for('stock') }}">
+             <select name="card_type" onchange="this.form.submit()">
+               <option value="">Select Card Type</option>
+               <option value="APL">APL</option>
+               <option value="BPL">BPL</option>
+               <option value="AAY">AAY</option>
+               <option value="OTHERS">OTHERS</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="item-container">
+         {% for item in items %}
+         <div class="item-box">
+              <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.item_name }}">
+                <div class="item-details">
+                   <h3>{{ item.item_name }}</h3>
+                   <p>Card Type: {{ item.card_type }}</p>
+                   <p>Fixed Qty: {{ item.fixed_qty }} kg</p>
+                   <p>Price: ₹{{ item.price }}</p>
+
+                    {% if item.available_qty > 0 %}
+                      <p class="available">Available</p>
+                    {% else %}
+                      <p class="out">Out of Stock</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+
+</body>
+</html>

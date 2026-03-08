@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ration Shop Notices</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notice.css') }}">
+</head>
+<body>
+
+    <div class="notice-header">
+       <h1>Ration Shop Notices</h1>
+       <a href="{{ url_for('home') }}" class="home-btn">Home</a>
+    </div>
+
+    <div class="notice-container">
+
+        <!-- SHOP NOTICES -->
+        <h2 class="section-title shop-title">🏪 Shop Notices</h2>
+
+        {% for n in notices if n.type == 'shop' %}
+        <div class="notice-card shop-card">
+           <h3>{{ n.title }}</h3>
+           <p>{{ n.message }}</p>
+           <span class="date">{{ n.created_at.strftime('%d-%m-%Y %I:%M %p') }}</span>
+        </div>
+        {% endfor %}
+
+
+        <!-- GOVERNMENT NOTICES -->
+        <h2 class="section-title govt-title">📢 Government Announcements</h2>
+
+        {% for n in notices if n.type == 'government' %}
+        <div class="notice-card govt-card">
+          <h3>{{ n.title }}</h3>
+          <p>{{ n.message }}</p>
+          <span class="date">{{ n.created_at.strftime('%d-%m-%Y %I:%M %p') }}</span>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>
