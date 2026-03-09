@@ -1,16 +1,18 @@
  
 from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
+import os
 
 app = Flask(__name__)
 
 # ---------------- DATABASE CONNECTION ----------------
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="anna26",
-        database="ration_shop"
+        host=os.environ.get("MYSQLHOST"),
+        user=os.environ.get("MYSQLUSER"),
+        password=os.environ.get("MYSQLPASSWORD"),
+        database=os.environ.get("MYSQLDATABASE"),
+        port=int(os.environ.get("MYSQLPORT"))
     )
 # Fetch all users
 #.execute("SELECT * FROM user")   # use users if your table name is user
@@ -586,4 +588,5 @@ def delete_notice(id):
     return redirect(url_for('admin', section='notice'))
 
 if __name__ == "__main__":
+
     app.run(debug=True)
