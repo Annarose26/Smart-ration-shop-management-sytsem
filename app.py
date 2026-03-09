@@ -588,5 +588,5 @@ def delete_notice(id):
     return redirect(url_for('admin', section='notice'))
 
 if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
 
-    app.run(debug=True)
